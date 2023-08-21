@@ -1,9 +1,17 @@
 import React from 'react'
 
-const Input = () => {
+const InputComponent = ({ type, state, setState,
+placeholder,required}) => {
   return (
-    <div>input</div>
+    <input
+    type={type}
+    value={state}
+    onChange={(e)=>setState(e.target.value)}
+    placeholder={placeholder}
+    required={required}
+    className="custom-input"
+    />
   )
 }
 
-export default Input;
+export default InputComponent;
