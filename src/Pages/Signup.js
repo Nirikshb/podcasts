@@ -43,6 +43,9 @@ const Signup = () => {
         type="password"
         required={true}
         />  
+        <Button text={"Signup"} onclick={handleSignup} />
+
+        <p>Click if you already have an account</p>
     </div>
   )
 }
