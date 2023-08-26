@@ -6,44 +6,17 @@ const Signup = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const [flag, setFlag] = useState(false);
+
+    const handleSignup = () =>{
+      console.log("Signing up handled");
+    };
 
     return (
     <div>
         <Header />
         <h1>Signup</h1>
-        <InputComponent 
-         state={fullName}
-         setState={setFullName}
-         placeholder="Full Name"
-         type="text"
-         required={true}
-        />
-
-        <InputComponent
-        state={email}
-        setState={setEmail}
-        placeholder="Full Name"
-        type="text"
-        required={true}
-        />
-
-        <InputComponent
-        state={password}
-        setState={setPassword}
-        placeholder="Password"
-        type="password"
-        required={true}
-        />
-
-      
-        <InputComponent
-        state={confirmPassword}
-        setState={setConfirmPassword}
-        placeholder="Confirm Password"
-        type="password"
-        required={true}
-        />  
-        <Button text={"Signup"} onclick={handleSignup} />
+       
 
         <p>Click if you already have an account</p>
     </div>
