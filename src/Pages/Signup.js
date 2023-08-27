@@ -1,11 +1,9 @@
 import React, { useState } from 'react'
 import InputComponent from '../components/Input'
+import SignupForm from '../components/SignupComponents/SignupForm';
 
 const Signup = () => {
-    const [fullName, setFullName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
+    
     const [flag, setFlag] = useState(false);
 
     const handleSignup = () =>{
@@ -15,8 +13,9 @@ const Signup = () => {
     return (
     <div>
         <Header />
-        <h1>Signup</h1>
-       
+        
+        {!flag ? <h1>Signup</h1> : <h1>Login</h1>}
+        {!flag ? <SignupForm /> : <></>}
 
         <p>Click if you already have an account</p>
     </div>

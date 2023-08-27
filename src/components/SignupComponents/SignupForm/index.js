@@ -1,8 +1,14 @@
 import React from 'react'
 
 const SignupForm = () => {
+    const [fullName, setFullName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+
   return (
-    <div> <InputComponent 
+    <> 
+        <InputComponent 
     state={fullName}
     setState={setFullName}
     placeholder="Full Name"
@@ -34,7 +40,9 @@ const SignupForm = () => {
    type="password"
    required={true}
    />  
-   <Button text={"Signup"} onclick={handleSignup} /></div>
+   <Button text={"Signup"} onclick={handleSignup} />
+   
+   </>
   )
 }
 
