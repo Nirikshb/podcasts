@@ -13,13 +13,22 @@ const Signup = () => {
     return (
     <div>
         <Header />
-        
+      <div className='input-wrapper'>  
         {!flag ? <h1>Signup</h1> : <h1>Login</h1>}
-        {!flag ? <SignupForm /> : <></>}
-
-        <p>Click if you already have an account</p>
+        {!flag ? <SignupForm /> : <LoginForm />}
+        
+        {!flag ? (
+          <p style={{cursor:"pointer"}} onClick={() => setFlag(!flag)}>
+            Already have an Account? Click here to Login.
+          </p>
+        ) : (
+          <p onClick={() => setFlag(!flag)}>
+            Don't have an Account? Click here to signup.
+          </p>
+        )}
+      </div>
     </div>
   )
 }
 
-export default Signup
+export default Signup;
