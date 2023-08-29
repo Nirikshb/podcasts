@@ -1,4 +1,10 @@
 import React from 'react'
+import InputComponent from '../../Input';
+import Button from '../../Button';
+import {auth, db, storage } from "../firebase";
+import {
+    createUserWithEmailAndPassword,
+} from "firebase/auth";
 
 const SignupForm = () => {
     const [fullName, setFullName] = useState("");
@@ -6,9 +12,27 @@ const SignupForm = () => {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
 
+
+    const handleSignup = async () => {
+        console.log("Handling Signup...");
+        // if(password == confirmPassword && password.length >=6){
+        //     try{
+        //         const userCredential = await createUserWithEmailAndPassword(
+        //             auth,
+        //             email,
+        //             password
+        //         );
+        //         const user = userCredential.user;
+        //     }catch (e) {
+        //         console.log("error", e);
+        //     };
+        // }
+        
+    }
+
   return (
     <> 
-        <InputComponent 
+    <InputComponent 
     state={fullName}
     setState={setFullName}
     placeholder="Full Name"
