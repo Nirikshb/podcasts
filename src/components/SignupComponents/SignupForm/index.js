@@ -1,7 +1,7 @@
 import React from 'react'
 import InputComponent from '../../Input';
 import Button from '../../Button';
-import {auth, db, storage } from "../firebase";
+import {auth, db, storage } from "../../../firebase";
 import {
     createUserWithEmailAndPassword,
 } from "firebase/auth";
@@ -15,18 +15,19 @@ const SignupForm = () => {
 
     const handleSignup = async () => {
         console.log("Handling Signup...");
-        // if(password == confirmPassword && password.length >=6){
-        //     try{
-        //         const userCredential = await createUserWithEmailAndPassword(
-        //             auth,
-        //             email,
-        //             password
-        //         );
-        //         const user = userCredential.user;
-        //     }catch (e) {
-        //         console.log("error", e);
-        //     };
-        // }
+        if(password == confirmPassword && password.length >=6){
+            try{
+                const userCredential = await createUserWithEmailAndPassword(
+                    auth,
+                    email,
+                    password
+                );
+                const user = userCredential.user;
+                console.log("user", user)
+            }catch (e) {
+                console.log("error", e);
+            };
+        }
         
     }
 
