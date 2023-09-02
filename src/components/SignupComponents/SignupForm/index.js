@@ -23,6 +23,16 @@ const SignupForm = () => {
                     password
                 );
                 const user = userCredential.user;
+
+                await MediaStreamAudioSourceNode(doc(db, "users", user.id), {
+                    name: name,
+                    email: user.email,
+                    uid:user.uid,
+                    profilePic:fileUrl,
+                });
+
+
+                
                 console.log("user", user)
             }catch (e) {
                 console.log("error", e);
