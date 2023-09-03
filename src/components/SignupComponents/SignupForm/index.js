@@ -31,8 +31,16 @@ const SignupForm = () => {
                     profilePic:fileUrl,
                 });
 
+                dispatch(
+                    setUser({
+                        email: user.email, 
+                        uid:user.uid, 
+                        name: name, 
+                        profilePic: fileUrl, 
+                })      
+                );
 
-                
+
                 console.log("user", user)
             }catch (e) {
                 console.log("error", e);
