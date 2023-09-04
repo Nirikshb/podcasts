@@ -17,30 +17,21 @@ const SignupForm = () => {
         console.log("Handling Signup...");
         if(password == confirmPassword && password.length >=6){
             try{
+                //creating user's account
                 const userCredential = await createUserWithEmailAndPassword(
                     auth,
                     email,
                     password
                 );
                 const user = userCredential.user;
+                console.log("user", user);
 
-                await MediaStreamAudioSourceNode(doc(db, "users", user.id), {
+                await setDoc(doc(db, "users", user.id), {
                     name: name,
                     email: user.email,
                     uid:user.uid,
                     profilePic:fileUrl,
                 });
-
-                dispatch(
-                    setUser({
-                        email: user.email, 
-                        uid:user.uid, 
-                        name: name, 
-                        profilePic: fileUrl, 
-                })      
-                );
-
-
                 console.log("user", user)
             }catch (e) {
                 console.log("error", e);
