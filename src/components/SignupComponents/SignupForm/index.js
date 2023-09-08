@@ -12,6 +12,8 @@ const SignupForm = () => {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
 
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const handleSignup = async () => {
         console.log("Handling Signup...");
@@ -32,6 +34,16 @@ const SignupForm = () => {
                     uid:user.uid,
                     profilePic:fileUrl,
                 });
+           
+                //saving data in redux, calls the redux actin
+                dispatch(setUser({
+                    name : fullName,
+                    email:user.email,
+                    uid:user.uid,
+                })
+                );
+
+                navigate("/profile");
                 console.log("user", user)
             }catch (e) {
                 console.log("error", e);

@@ -7,6 +7,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<SignUp />} />
+          <Route path="/profile" element={<Profile />} />
           <Route element={<PrivateRoutes />} />
           {/* Profile
           Podcasts */}
