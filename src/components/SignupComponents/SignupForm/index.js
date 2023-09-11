@@ -1,10 +1,16 @@
 import React from 'react'
 import InputComponent from '../../Input';
-import Button from '../../Button';
+import Button from '../../Common/Button';
 import {auth, db, storage } from "../../../firebase";
 import {
     createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
 } from "firebase/auth";
+import {doc, setDoc} from "firebase/firestore";
+import {useDispatch} from "react-redux";
+import {setUser} from "../../../slices/userSlice";
+import {useNavigate} from "react-router-dom";
+
 
 const SignupForm = () => {
     const [fullName, setFullName] = useState("");
@@ -17,6 +23,7 @@ const SignupForm = () => {
 
     const handleSignup = async () => {
         console.log("Handling Signup...");
+  
         if(password == confirmPassword && password.length >=6){
             try{
                 //creating user's account
