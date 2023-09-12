@@ -23,13 +23,13 @@ const LoginForm = () => {
           const user = userCredential.user;
           const userDoc = await getDoc(doc(db, "user", user.uid));
           const userData = userDoc.data();
+          console.log("userData", userData);
 
           dispatch(
             setUser({
               name : userData.name,
               email:user.email,
               uid: user.uid,
-              profilePic: userData.profilePic,
             })
           );
           toast.success("User Login Successful");
@@ -39,9 +39,7 @@ const LoginForm = () => {
         }
     };
 
-   
-
-  return (
+     return (
     <div>
       {/* todo : incorprate ui for login maybe use toastify for login pop ups */}
     </div>
