@@ -32,6 +32,7 @@ const LoginForm = () => {
               uid: user.uid,
             })
           );
+          
           toast.success("User Login Successful");
           navigate("/profile");//navigating to the profile page
         } catch (error){

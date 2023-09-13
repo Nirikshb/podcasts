@@ -1,63 +1,68 @@
-import React from 'react'
+import React, { useState } from 'react';
+import { toast } from 'react-toastify'; // Import toast for displaying error messages
 import InputComponent from '../../Input';
 import Button from '../../Common/Button';
-import {auth, db, storage } from "../../../firebase";
-import {
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
-} from "firebase/auth";
-import {doc, setDoc} from "firebase/firestore";
-import {useDispatch} from "react-redux";
-import {setUser} from "../../../slices/userSlice";
-import {useNavigate} from "react-router-dom";
-
+import { auth, db } from '../../../firebase';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { doc, setDoc } from 'firebase/firestore';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../../slices/userSlice';
+import { useNavigate } from 'react-router-dom';
 
 const SignupForm = () => {
-    const [fullName, setFullName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
+  const [fullName, setFullName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-    const handleSignup = async () => {
-        console.log("Handling Signup...");
-  
-        if(password == confirmPassword && password.length >=6){
-            try{
-                //creating user's account
-                const userCredential = await createUserWithEmailAndPassword(
-                    auth,
-                    email,
-                    password
-                );
-                const user = userCredential.user;
-                console.log("user", user);
+  const handleSignup = async () => {
+    console.log('Handling Signup...');
 
-                await setDoc(doc(db, "users", user.id), {
-                    name: name,
-                    email: user.email,
-                    uid:user.uid,
-                    profilePic:fileUrl,
-                });
-           
-                //saving data in redux, calls the redux actin
-                dispatch(setUser({
-                    name : fullName,
-                    email:user.email,
-                    uid:user.uid,
-                })
-                );
+    if (password === confirmPassword && password.length >= 6) {
+      try {
+        // Creating user's account
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+        console.log('user', user);
 
-                navigate("/profile");
-                console.log("user", user)
-            }catch (e) {
-                console.log("error", e);
-            };
-        }
-        
+        // Define fileUrl here or wherever you get it
+        const fileUrl = 'your_profile_pic_url';
+
+        await setDoc(doc(db, 'users', user.uid), {
+          name: fullName, // Fixed the variable name here
+          email: user.email,
+          uid: user.uid,
+          profilePic: fileUrl, // Fixed the variable name here
+        });
+
+        // Saving data in redux, calls the redux action
+        dispatch(
+          setUser({
+            name: fullName,
+            email: user.email,
+            uid: user.uid,
+          })
+        );
+
+        toast.success("Yippie kay-yay User Created")
+        navigate('/profile');
+        console.log('user', user);
+      } catch (e) {
+        console.log('error', e);
+      }
+    } else {
+      if (password !== confirmPassword) {
+        toast.error('Please Make Sure Your Passwords Match');
+      }
+      if (password.length < 6) {
+        toast.error('Make sure password length is at least 6 characters');
+      }
     }
+  };
+        
 
   return (
     <> 
