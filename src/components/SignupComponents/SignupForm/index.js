@@ -14,6 +14,7 @@ const SignupForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -21,7 +22,11 @@ const SignupForm = () => {
   const handleSignup = async () => {
     console.log('Handling Signup...');
 
-    if (password === confirmPassword && password.length >= 6) {
+    if (password === confirmPassword && 
+        password.length >= 6 &&
+        fullName &&
+        email) 
+        {
       try {
         // Creating user's account
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
@@ -52,12 +57,14 @@ const SignupForm = () => {
         console.log('user', user);
       } catch (e) {
         console.log('error', e);
+        toast.error(e.message);
+        setLoading(false);
       }
     } else {
       if (password !== confirmPassword) {
         toast.error('Please Make Sure Your Passwords Match');
       }
-      if (password.length < 6) {
+      else if (password.length < 6) {
         toast.error('Make sure password length is at least 6 characters');
       }
     }
@@ -98,7 +105,10 @@ const SignupForm = () => {
    type="password"
    required={true}
    />  
-   <Button text={"Signup"} onclick={handleSignup} />
+   
+   <Button text={loading ? "Loading..." : "Signup"} 
+   disabled={loading} 
+   onclick={handleSignup} />
    
    </>
   )
