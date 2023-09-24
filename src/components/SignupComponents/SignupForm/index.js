@@ -52,7 +52,7 @@ const SignupForm = () => {
           })
         );
 
-        toast.success("Yippie kay-yay User Created")
+        toast.success("Yippie kay-yay Login Created")
         navigate('/profile');
         console.log('user', user);
       } catch (e) {
