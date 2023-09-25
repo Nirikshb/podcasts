@@ -9,7 +9,23 @@ function App() {
     const authUnsubribe = onAuthStateChanged(auth, (user)=>{
       if(user) {
         const unsubscribeSnapshot = onSnapshot(
-          doc(db, "users", user.uid)
+          doc(db, "users", user.uid),
+          (userDoc)=>{
+            if(userDoc.exists()){
+              const userData = userDoc.data();
+              dispatchEvent(
+                setUser({
+                  name:userData.name,
+                  email:userData.email,
+                  uid:user.uid,
+                  profilePic:userData.profilePic,
+                })
+              );
+            }
+          },
+          (error)=>{
+            console.log("Error fetching user data", error);
+          }
         )
       }
     })  
