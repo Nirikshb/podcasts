@@ -3,8 +3,13 @@ import './App.css';
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/react-toastify.css";
+import {useDispatch} from "react-redux";
+
 
 function App() {
+ 
+  const dispatch = useDispatch();
+
   useEffect(()=>{
     const authUnsubribe = onAuthStateChanged(auth, (user)=>{
       if(user) {
@@ -26,9 +31,13 @@ function App() {
           (error)=>{
             console.log("Error fetching user data", error);
           }
-        )
+        );
+
+        return () =>{
+          unsubscribeSnapshot();
+        };
       }
-    })  
+    });
 
     return authUnsubribe();
       
