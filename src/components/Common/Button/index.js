@@ -1,13 +1,12 @@
 import React from 'react'
-import ".style.css";
+import "./style.css";
 
-const Button = ({text, onClick, disabled}) => {
+const Button = ({ text, onClick, disabled }) => {
   return (
-    <div onClick={onClick} className='custom-btn'
-    disabled={disabled} >
-          {text}
+    <div onClick={onClick} className={`custom-btn${disabled ? ' disabled' : ''}`}>
+      {text}
     </div>
-  )
-}
+  );
+};
 
 export default Button;
