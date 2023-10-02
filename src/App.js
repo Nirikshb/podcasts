@@ -57,8 +57,13 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<SignUp />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route element={<PrivateRoutes />} />
+
+          <Route element={<PrivateRoutes />}>
+          <Route path='/profile' element={<Profile />} />   
+          <Route path='/podcasts' element={<Podcasts />} />   
+          </Route>
+        
+        
           {/*Profiles*/}
         </Routes>
       </Router>

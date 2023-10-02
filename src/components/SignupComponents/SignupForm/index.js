@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify'; // Import toast for displaying error messages
-import InputComponent from '../../Input';
+import InputComponent from '../../Common/Input';
 import Button from '../../Common/Button';
 import { auth, db } from '../../../firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';

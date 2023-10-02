@@ -1,6 +1,6 @@
 import React from 'react';
 import { userSelector } from "react-redux";
-import Header from '../components/Header';
+import Header from '../components/Common/Header';
 
 
 const Profile = () => {

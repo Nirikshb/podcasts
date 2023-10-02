@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import InputComponent from '../components/Input'; // Import InputComponent
+import InputComponent from '../components/Common/Input'; // Import InputComponent
 import SignupForm from '../components/SignupComponents/SignupForm'; // Import SignupForm component
 
 const Signup = () => {
