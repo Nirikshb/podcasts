@@ -61,9 +61,9 @@ function App() {
           <Route element={<PrivateRoutes />}>
           <Route path='/profile' element={<Profile />} />   
           <Route path='/podcasts' element={<Podcasts />} />   
+          <Route path='/create-podcasts' element={<CreatePodcasts />} />   
+          <Route path='/podcast/:podcastId' element={<PodcastsDetails />} />   
           </Route>
-        
-        
           {/*Profiles*/}
         </Routes>
       </Router>
