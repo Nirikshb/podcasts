@@ -1,15 +1,18 @@
-import React from 'react'
+import React from 'react';
+import { useAuthState } from 'your-auth-library'; // Import your auth library
+import { Navigate, Outlet } from 'react-router-dom';
 
-const PrivareRoutes = () => {
+const PrivateRoutes = () => {
     const [user, loading, error] = useAuthState(auth);
 
-    if(loading) {
-        return <p>Loading....</p>;
-    }else if (!user || error) {
-        return <Navigate to="/" replace />;
-    } else {
-        return <Outlet />;
-    };
+    switch (true) {
+        case loading:
+            return <p>Loading....</p>;
+        case !user || error:
+            return <Navigate to="/" replace />;
+        default:
+            return <Outlet />;
+    }
 };
 
-export default PrivareRoutes;
+export default PrivateRoutes;
