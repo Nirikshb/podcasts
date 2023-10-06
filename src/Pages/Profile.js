@@ -1,7 +1,7 @@
 import React from 'react';
 import { userSelector } from "react-redux";
 import Header from '../components/Common/Header';
-
+import {toast} from "react-toastify";
 
 const Profile = () => {
   const user = useSelector((state) => state.user.user);
