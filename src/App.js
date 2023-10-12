@@ -12,19 +12,21 @@ import Profile from './components/Profile'; // Import your Profile component
 import PrivateRoutes from './components/PrivateRoutes'; // Import your PrivateRoutes component
 import { auth, db } from './firebase'; // Import your Firebase configuration objects
 
-
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    // Subscribe to the authentication state changes
     const authUnsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
+        // Subscribe to user data changes in Firestore
         const unsubscribeSnapshot = onSnapshot(
           doc(db, 'users', user.uid),
           (userDoc) => {
             if (userDoc.exists()) {
               const userData = userDoc.data();
               dispatch(
+                // Dispatch the 'setUser' action with user data
                 setUser({
                   name: userData.name,
                   email: userData.email,
@@ -50,21 +52,19 @@ function App() {
     };
   }, []);
 
-
   return (
     <div className="App">
       <ToastContainer />
       <Router>
         <Routes>
           <Route path="/" element={<SignUp />} />
-
           <Route element={<PrivateRoutes />}>
-          <Route path='/profile' element={<Profile />} />   
-          <Route path='/podcasts' element={<Podcasts />} />   
-          <Route path='/create-podcasts' element={<CreatePodcasts />} />   
-          <Route path='/podcast/:podcastId' element={<PodcastsDetails />} />   
+            <Route path='/profile' element={<Profile />} />   
+            <Route path='/podcasts' element={<Podcasts />} />   
+            <Route path='/create-podcasts' element={<CreatePodcasts />} />   
+            <Route path='/podcast/:podcastId' element={<PodcastsDetails />} />   
           </Route>
-          {/*Profiles*/}
+          {/* Profiles */}
         </Routes>
       </Router>
     </div>
