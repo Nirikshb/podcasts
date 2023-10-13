@@ -6,6 +6,7 @@ const Header = () => {
   const location = useLocation();
   const currentPath = location.pathname;
 
+  // Log the current path to the console for debugging or tracking.
   console.log("Current Path:", currentPath);
 
   return (
