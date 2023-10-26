@@ -25,8 +25,7 @@ const Header = () => {
           </Link>
           <Link
             to="/profile"
-            className={currentPath === '/profile' ? 'active' : ''}
-          >
+            className={currentPath === '/profile' ? 'active' : ''} >
             Profile
           </Link>
         </div>
