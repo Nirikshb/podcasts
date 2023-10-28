@@ -9,14 +9,16 @@ const FileInput = ({ accept, id, fileHandleFnc }) => {
         console.log(e.target.files);
         // Update the state with the name of the selected file
         setFileSelected(e.target.files[0].name);
+        fileHandleFnc(e.target.files[0]);
     };
 
     return (
         <>
             <label htmlFor={id} className='custom-input'>
-                {fileSelected ? "File Selected" : "Import Banner Image"}
+                {fileSelected ? `The File ${fileSelected} was selected` 
+                : "Import Image"}
             </label>
-
+            
             <input
                 type='file'
                 accept={accept}

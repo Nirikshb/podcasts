@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import InputComponent from '../Common/Input';
 
 const CreatePodcastForm = () => {
     // State variables to manage form inputs and other stateful data
@@ -15,7 +16,23 @@ const CreatePodcastForm = () => {
 
     return (
         <div>
-            <div>CreatePodcastForm</div>
+            <div>CreatePodcastForm
+               <InputComponent
+               state={title}
+               setState={setTitle}
+               placeholder="Title"
+               type="text"
+               required={true}
+               />
+
+               <InputComponent
+               state={desc}
+               setState={setDesc}
+               placeholder="Description"
+               type="text"
+               required={true}
+               /> 
+            </div>
         </div>
     );
 };
