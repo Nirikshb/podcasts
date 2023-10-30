@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useDispatch } from 'react-redux'; // Import useDispatch
 import InputComponent from '../Common/Input';
 
 const CreatePodcastForm = () => {
@@ -14,26 +16,38 @@ const CreatePodcastForm = () => {
     // Redux's useDispatch hook for dispatching actions
     const dispatch = useDispatch();
 
-    return (
-        <div>
-            <div>CreatePodcastForm
-               <InputComponent
-               state={title}
-               setState={setTitle}
-               placeholder="Title"
-               type="text"
-               required={true}
-               />
+  const handleSubmit = () =>{
+    toast.success("Handling Form");
+  }
 
-               <InputComponent
-               state={desc}
-               setState={setDesc}
-               placeholder="Description"
-               type="text"
-               required={true}
-               /> 
+
+    return (
+        <>
+            {/* CreatePodcastForm */}
+            <div>
+                {/* InputComponent for podcast title */}
+                <InputComponent
+                    state={title}
+                    setState={setTitle}
+                    placeholder="Title"
+                    type="text"
+                    required={true}
+                />
+
+                {/* InputComponent for podcast description */}
+                <InputComponent
+                    state={desc}
+                    setState={setDesc}
+                    placeholder="Description"
+                    type="text"
+                    required={true}
+                />
+ 
+                <Button text={loading ? "Loading..." : "Create a Podcast"} 
+                disabled={loading} 
+                onclick={handleSubmit} />
             </div>
-        </div>
+        </>
     );
 };
 
