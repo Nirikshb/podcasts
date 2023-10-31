@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import { useDispatch } from 'react-redux'; // Import useDispatch
 import InputComponent from '../Common/Input';
+import FileInput from '../Common/Input/FileInput';
 
 const CreatePodcastForm = () => {
     // State variables to manage form inputs and other stateful data
@@ -18,6 +19,15 @@ const CreatePodcastForm = () => {
 
   const handleSubmit = () =>{
     toast.success("Handling Form");
+  }
+
+  const displayImageHandle = (file) =>{
+    setDisplayImage(file);
+  }
+
+  
+  const bannerImageHandle = (file) =>{
+    setBannerImage(file);
   }
 
 
@@ -42,10 +52,25 @@ const CreatePodcastForm = () => {
                     type="text"
                     required={true}
                 />
- 
-                <Button text={loading ? "Loading..." : "Create a Podcast"} 
-                disabled={loading} 
-                onclick={handleSubmit} />
+
+                    {/* InputComponent for podcast description */}
+                    <InputComponent
+                    state={displayImage}
+                    setState={setDisplayImage}
+                    placeholder="Display Image"
+                    type="file"
+                    required={true}
+                />
+
+            <FileInput
+            accept={"image/*"}
+            id="banner-image-input"
+            fileHandleFnc={bannerImageHandle}
+            />
+
+            <Button text={loading ? "Loading..." : "Create a Podcast"} 
+            disabled={loading} 
+            onclick={handleSubmit} />
             </div>
         </>
     );
