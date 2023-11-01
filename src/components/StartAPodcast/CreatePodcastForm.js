@@ -19,7 +19,12 @@ const CreatePodcastForm = () => {
 
   const handleSubmit = () =>{
     toast.success("Handling Form");
-  }
+    if( title && desc && displayImage && bannerImage){
+          
+    }else {
+      toast.error("Please Enter All Values");
+    };
+  };
 
   const displayImageHandle = (file) =>{
     setDisplayImage(file);
