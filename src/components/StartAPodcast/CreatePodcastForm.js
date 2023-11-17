@@ -1,83 +1,77 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
-import { useDispatch } from 'react-redux'; // Import useDispatch
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import InputComponent from '../Common/Input';
 import FileInput from '../Common/Input/FileInput';
+import Button from '../Common/Button';
+import { toast } from 'react-toastify'; // Imported toast for displaying messages
 
 const CreatePodcastForm = () => {
-    // State variables to manage form inputs and other stateful data
-    const [title, setTitle] = useState(''); // State for podcast title
-    const [desc, setDesc] = useState(''); // State for podcast description
-    const [displayImage, setDisplayImage] = useState(''); // State for podcast image
-    const [loading, setLoading] = useState(false); // State for loading indicator
+    const [title, setTitle] = useState('');
+    const [desc, setDesc] = useState('');
+    const [displayImage, setDisplayImage] = useState('');
+    const [loading, setLoading] = useState(false);
 
-    // React Router's useNavigate hook for navigation
     const navigate = useNavigate();
-
-    // Redux's useDispatch hook for dispatching actions
     const dispatch = useDispatch();
 
-  const handleSubmit = () =>{
-    toast.success("Handling Form");
-    if( title && desc && displayImage && bannerImage){
-          
-    }else {
-      toast.error("Please Enter All Values");
+    const handleSubmit = () => {
+        if (title && desc && displayImage) {
+            // Logic for handling form submission when all required fields are filled
+            // Missing logic for 'bannerImage' handling
+        } else {
+            toast.error('Please Enter All Values'); // Notify if any field is missing
+        }
     };
-  };
 
-  const displayImageHandle = (file) =>{
-    setDisplayImage(file);
-  }
+    const displayImageHandle = (file) => {
+        setDisplayImage(file);
+    };
 
-  
-  const bannerImageHandle = (file) =>{
-    setBannerImage(file);
-  }
-
+    const bannerImageHandle = (file) => {
+        // Missing logic for handling 'bannerImage'
+    };
 
     return (
-        <>
-            {/* CreatePodcastForm */}
-            <div>
-                {/* InputComponent for podcast title */}
-                <InputComponent
-                    state={title}
-                    setState={setTitle}
-                    placeholder="Title"
-                    type="text"
-                    required={true}
-                />
-
-                {/* InputComponent for podcast description */}
-                <InputComponent
-                    state={desc}
-                    setState={setDesc}
-                    placeholder="Description"
-                    type="text"
-                    required={true}
-                />
-
-                    {/* InputComponent for podcast description */}
-                    <InputComponent
-                    state={displayImage}
-                    setState={setDisplayImage}
-                    placeholder="Display Image"
-                    type="file"
-                    required={true}
-                />
-
-            <FileInput
-            accept={"image/*"}
-            id="banner-image-input"
-            fileHandleFnc={bannerImageHandle}
+        <div>
+            <InputComponent
+                state={title}
+                setState={setTitle}
+                placeholder="Title"
+                type="text"
+                required={true}
             />
 
-            <Button text={loading ? "Loading..." : "Create a Podcast"} 
-            disabled={loading} 
-            onclick={handleSubmit} />
-            </div>
-        </>
+            <InputComponent
+                state={desc}
+                setState={setDesc}
+                placeholder="Description"
+                type="text"
+                required={true}
+            />
+
+            <InputComponent
+                state={displayImage}
+                setState={setDisplayImage}
+                placeholder="Display Image"
+                type="file"
+                required={true}
+            />
+
+            {/* FileInput for banner image */}
+            <FileInput
+                accept={"image/*"}
+                id="banner-image-input"
+                fileHandleFnc={bannerImageHandle}
+            />
+
+            {/* Button for form submission */}
+            <Button
+                text={loading ? 'Loading...' : 'Create a Podcast'}
+                disabled={loading}
+                onClick={handleSubmit}
+            />
+        </div>
     );
 };
 
